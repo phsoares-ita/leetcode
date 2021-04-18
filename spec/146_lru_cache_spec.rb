@@ -151,7 +151,6 @@ describe 'solution' do
 
     context 'getting old key should refresh cache usage' do
       it 'getting 1 should make it not expire' do
-        byebug
         @cache.get(1)
         @cache.put(4, 14)
         expect(@cache.get(1)).to eq(11)
