@@ -1,43 +1,34 @@
 require 'spec_helper'
 require 'byebug'
 
+# s.length <= 1000
 def longest_palindrome(str)
-  return str if str.length <= 1
-
   ret = []
   (0...str.length).each do |i|
-    ret << get_largest_palindrome(str, i, i)
-    ret << get_largest_palindrome(str, i, i + 1) if str[i] == str[i + 1]
+    ret << largest_palindrome(str, i, i)
+    ret << largest_palindrome(str, i, i + 1) if i + 1 < str.length
   end
-  ret.sort_by { |x| x.length }.last
+  ret.max_by(&:length)
 end
 
-def get_largest_palindrome(str, i, j)
-  while str[i - 1] == str[j + 1] && i - 1 >= 0 && j + 1 < str.length
+def largest_palindrome(str, i, j)
+  return str[i] if str[i] != str[j]
+
+  while i - 1 >= 0 && j + 1 < str.length && str[i - 1] == str[j + 1]
     i -= 1
     j += 1
   end
   str[i..j]
 end
 
-describe 'solution' do
-  it { expect(longest_palindrome('1')).to eq '1' }
-  it { expect(longest_palindrome('1b')).to eq 'b' }
-  it { expect(longest_palindrome('1b1')).to eq '1b1' }
-  it { expect(longest_palindrome('x1b1')).to eq '1b1' }
-  it { expect(longest_palindrome('1b1x')).to eq '1b1' }
-  it { expect(longest_palindrome('y1b1x')).to eq '1b1' }
-  it { expect(longest_palindrome('yy1b1x')).to eq '1b1' }
-
-  context do
-    before do
-      @long_pal_str = '0123443210' * 100
-      @long_non_pal_str = '0123456789' * 100
-    end
-
-    it { expect(longest_palindrome(@long_pal_str)).to eq @long_pal_str }
-    it { expect(longest_palindrome(@long_non_pal_str)).to eq '9' }
-  end
+def is_palindrome?(str)
+  str == str.reverse
 end
 
-#max size is 1e3
+describe 'solution' do
+  it { expect(longest_palindrome('1')).to eq '1' }
+  it { expect(longest_palindrome('12')).to eq '1' }
+  it { expect(longest_palindrome('121')).to eq '121' }
+  it { expect(longest_palindrome('121')).to eq '121' }
+  it { expect(longest_palindrome('11234567899876543201')).to eq '2345678998765432' }
+end
