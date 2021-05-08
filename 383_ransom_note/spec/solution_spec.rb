@@ -8,7 +8,7 @@ def can_construct(ransom_note, magazine)
   occurrences = map_occurrences(magazine)
   ransom_note.chars.each do |char|
     next if char =~ /\s/
-    return false if occurrences[char].zero?
+    return false if !occurrences[char] ||occurrences[char].zero?
 
     occurrences[char] -= 1
   end
