@@ -10,4 +10,5 @@ cp spec/spec_helper.rb $solution/spec/
 cp template.rb $solution/spec/solution_spec.rb
 
 echo "Created solution $solution"
-echo "To test run: rspec $solution"
+echo "To test run:"
+echo "bash test.sh $solution"
