@@ -21,7 +21,6 @@ def common_chars(s)
   ret
 end
 
-
 describe 'solution' do
   let(:big_str) { 'a' * 100 }
   it { expect(common_chars(%w[bella])).to eq %w[b e l l a] }
