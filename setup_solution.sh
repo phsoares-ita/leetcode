@@ -4,13 +4,11 @@ solution=$( echo $1 | tr '[:upper:]' '[:lower:]' )
 solution=${solution// /_}
 solution=${solution//./}
 
-mkdir $solution
-mkdir $solution/spec
-cp spec/spec_helper.rb $solution/spec/
-cp template.rb $solution/spec/solution_spec.rb
+mkdir -p solutions/$solution/spec
+cp template/template.rb solutions/$solution/spec/solution_spec.rb
 
-echo "Created solution $solution"
-echo "To test run: bash test.sh $solution"
+echo "Created solution solutions/$solution"
+bash test.sh solutions/$solution
 
-echo "bash test.sh $solution" | xclip -sel clip
-echo "Command pasted to your clipboard"
+echo "bash test.sh solutions/$solution/spec" | xclip -sel clip
+echo "Test command pasted to your clipboard"
