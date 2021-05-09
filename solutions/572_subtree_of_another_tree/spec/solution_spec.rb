@@ -18,9 +18,7 @@ def is_subtree(root, sub_root)
   return true if root.nil? && sub_root.nil?
   return false unless root && sub_root
 
-  return true if all_matches(root, sub_root) || all_matches(root.left, sub_root) || all_matches(root.right, sub_root)
-
-  is_subtree(root.left, sub_root) || is_subtree(root.right, sub_root)
+  all_matches(root, sub_root) || is_subtree(root.left, sub_root) || is_subtree(root.right, sub_root)
 end
 
 def all_matches(a, b)
