@@ -21,8 +21,8 @@ def first_bad_version(n)
       left = pivot + 1
     end
   end
-  if cache[left]
-    return left - 1
+  if !cache[left]
+    return left + 1
   else
     return left
   end
