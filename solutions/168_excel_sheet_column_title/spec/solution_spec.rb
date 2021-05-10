@@ -4,14 +4,13 @@ require 'byebug'
 # @param {Integer} column_number
 # @return {String}
 def convert_to_title(x)
+  ret = []
   letters = ('A'..'Z').to_a
-  if (x - 1) / 26 == 0
-    letters[x - 1]
-  elsif (x - 1) / 26 == 1
-    'A' + letters[(x - 1) % 26]
-  elsif (x - 1) / 26 == 2
-    'B' + letters[(x - 1) % 26]
+  while x > 0
+    ret << letters[(x-1) % 26]
+    x = (x-1) / 26
   end
+  ret.reverse.join
 end
 
 describe 'solution' do
