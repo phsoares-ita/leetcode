@@ -19,7 +19,7 @@ def my_sqrt(x)
       right = pivot - 1
     end
   end
-  left**2 > x ? left - 1 : left
+  right
 end
 
 describe 'solution' do
